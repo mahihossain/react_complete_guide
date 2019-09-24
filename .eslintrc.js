@@ -5,7 +5,7 @@ module.exports = {
     node: true
   },
   extends: [
-    'standard'
+    'react-app'
   ],
   globals: {
     Atomics: 'readonly',
