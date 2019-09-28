@@ -1,7 +1,30 @@
-import React from "react";
+import React, { useEffect } from "react";
 import styles from "./Cockpit.css";
 
-const cockpit = props => {
+const Cockpit = props => {
+  useEffect(
+    () => {
+      console.log("[Cockpit.js] useEffect rendering....");
+
+      setTimeout(() => {
+        alert("Data Saved!");
+      }, 1000);
+
+      return () => {
+        console.log("[Cockpit.js] cleanup in useEffect...");
+      };
+    },
+    /* [props.persons] */ []
+  );
+
+  useEffect(() => {
+    console.log("[Cockpit.js] 2nd useEffect rendering....");
+
+    return () => {
+      console.log("[Cockpit.js] cleanup in 2nd useEffect...");
+    }
+  })
+
   console.log("[Conckpit.js] rendering cockpit....");
   let cssClasses = [];
   let btnClass = "";
@@ -9,10 +32,10 @@ const cockpit = props => {
   if (props.showPersons) {
     btnClass = styles.Red;
   }
-  if (props.persons.length <= 2) {
+  if (props.personsLength <= 2) {
     cssClasses.push(styles.red);
   }
-  if (props.persons.length <= 1) {
+  if (props.personsLength <= 1) {
     cssClasses.push(styles.bold);
   }
   return (
@@ -26,4 +49,4 @@ const cockpit = props => {
   );
 };
 
-export default cockpit;
+export default React.memo(Cockpit);
